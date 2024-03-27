@@ -1,0 +1,22 @@
+[
+    {"id": 1, 
+    "groupname": "Group1",
+    "users": [
+        {"id": 1, "isAdmin": true, "name": "Karol", "email": "karol@email.com"},
+        {"id": 2, "isAdmin": false, "name": "Joe", "email": "joe@email.com"},
+        {"id": 3, "isAdmin": false, "name": "John", "email": "john@email.com"},
+        {"id": 4, "isAdmin": false, "name": "James", "email": "james@email.com"},
+        {"id": 5, "isAdmin": false, "name": "Jane", "email": "jane@email.com"}
+        
+    ]},
+    {"id": 4, 
+    "groupname": "Group4",
+    "users": [
+        {"id": 1, "isAdmin": false, "name": "Karol", "email": "karol@email.com"},
+        {"id": 5, "isAdmin": false, "name": "Joe", "email": "joe@email.com"},
+        {"id": 6, "isAdmin": false, "name": "John", "email": "john@email.com"},
+        {"id": 2, "isAdmin": true, "name": "James", "email": "james@email.com"},
+        {"id": 3, "isAdmin": false, "name": "Jane", "email": "jane@email.com"}
+        
+    ]}
+]

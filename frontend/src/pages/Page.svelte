@@ -124,10 +124,6 @@
     currentPage = "signup";
   };
 
-  const dispatchBack = () => {
-    dispatch("back");
-  };
-
   const handleLogin = async () => {
     const response = await login(username, password);
     loginSuccess = response.success;
@@ -272,14 +268,6 @@
         >
           Sign up
         </button>
-        <!-- <button
-      on:click={() => {
-        goToPage("opening");
-      }}
-      class="absolute top-[22px] left-[22px]"
-    >
-      <img src={back} alt="back" />
-    </button> -->
 
         <h1 class="font-medium text-2xl flex justify-center items-center">
           Login
@@ -326,12 +314,6 @@
         class="relative min-h-screen text-primary flex flex-col items-center bg-no-repeat bg-center bg-primary bg-opacity-35 justify-center"
         style="background-image: url({backgroundThree})"
       >
-        <!-- <button
-          on:click={toggleEdit}
-          class="btn border-[none] font-medium h-[60px] text-m text-primary bg-transparent border-none"
-        >
-          Edit
-        </button> -->
         <h1 class="text-myPrimary font-medium text-[24px] my-2 mt-6">
           Hi {firstLetterUpperCase(loggedInUserName)}!
         </h1>
@@ -364,7 +346,7 @@
                       on:click={() => {
                         currentGroup = group.groupname;
                         console.log(currentGroup);
-                        deleteGroupForever( group.groupname, loggedInUserName);
+                        deleteGroupForever(group.groupname, loggedInUserName);
                       }}
                       class="flex justify-center items-center absolute bottom-2 right-2 z-10 w-10 h-10"
                     >
@@ -503,14 +485,7 @@
         >
           <img src={back} alt="back" />
         </button>
-        <!-- <button
-          on:click={() => {
-            goToPage("login");
-          }}
-          class="absolute top-2 right-2 btn border-[none] font-medium text-m text-secondary bg-primary border-none"
-        >
-          Login
-        </button> -->
+
         <h1 class="font-medium text-2xl flex justify-center items-center">
           Join to group!
         </h1>

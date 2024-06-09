@@ -2,7 +2,7 @@
 
   import backgroundOne from "./assets/bg-1.png";
   import Login from "./pages/DatePicker.svelte";
-  import Signup from "./pages/Signup.svelte";
+  import Page from "./pages/Page.svelte";
 
   let condition: boolean = false;
 
@@ -34,7 +34,7 @@
   >
 </section>
   {:else if currentPage === "signup"}
-    <Signup />
+    <Page />
   {/if}
 
   

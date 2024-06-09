@@ -14,25 +14,31 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.save = exports.load = void 0;
 const promises_1 = __importDefault(require("fs/promises"));
-const load = (filename) => __awaiter(void 0, void 0, void 0, function* () {
+const load = (filename, schema) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        const rawData = yield promises_1.default.readFile(`${__dirname}/../../database/${filename}.json`, "utf-8");
+        const path = `${__dirname}/../../database/${filename}.json`;
+        const rawData = yield promises_1.default.readFile(path, 'utf-8');
         const data = JSON.parse(rawData);
-        return data;
+        const validatedData = schema.parse(data);
+        return validatedData;
     }
     catch (error) {
+        console.log(error);
         return null;
     }
 });
 exports.load = load;
-const save = (filename, data) => __awaiter(void 0, void 0, void 0, function* () {
+const save = (filename, data, schema) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        const fileContent = JSON.stringify(data);
-        yield promises_1.default.writeFile(`${__dirname}/../database/${filename}.json`, fileContent);
-        return true;
+        const path = `${__dirname}/../../database/${filename}.json`;
+        const dataToInsert = schema.parse(data);
+        const content = JSON.stringify(dataToInsert, null, 2);
+        yield promises_1.default.writeFile(path, content);
+        return { success: true };
     }
     catch (error) {
-        return false;
+        console.log(error);
+        return { success: false };
     }
 });
 exports.save = save;

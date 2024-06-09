@@ -1,22 +1,315 @@
 [
-    {"id": 1, 
-    "groupname": "Group1",
+  {
+    "id": 0.6131304517051115,
+    "groupname": "pipi",
+    "budget": 1234,
+    "finishDate": "123344",
+    "admin": {
+      "id": 0.3306128250038307,
+      "username": "mihaly",
+      "password": "$2b$10$BohGiw89Png4kupVXAWQMOv47l9FAvod7Lr7tUxzCf/zfuw.v/OG6"
+    },
     "users": [
-        {"id": 1, "isAdmin": true, "name": "Karol", "email": "karol@email.com"},
-        {"id": 2, "isAdmin": false, "name": "Joe", "email": "joe@email.com"},
-        {"id": 3, "isAdmin": false, "name": "John", "email": "john@email.com"},
-        {"id": 4, "isAdmin": false, "name": "James", "email": "james@email.com"},
-        {"id": 5, "isAdmin": false, "name": "Jane", "email": "jane@email.com"}
-        
-    ]},
-    {"id": 4, 
-    "groupname": "Group4",
+      {
+        "user": {
+          "id": 0.3306128250038307,
+          "username": "mihaly",
+          "password": "$2b$10$BohGiw89Png4kupVXAWQMOv47l9FAvod7Lr7tUxzCf/zfuw.v/OG6"
+        },
+        "alreadyDrawn": true,
+        "alreadyTaken": true
+      },
+      {
+        "user": {
+          "id": 0.41824212838346475,
+          "username": "petra",
+          "password": "$2b$10$9H7TXxCPcwh4F5gW1oDORORyG/flD5tHDvm0w15ejIVx6fbCqv56q"
+        },
+        "alreadyDrawn": true,
+        "alreadyTaken": true
+      },
+      {
+        "user": {
+          "id": 0.04791217664006697,
+          "username": "emi",
+          "password": "$2b$10$bxAm0nzM43ieLtDJbXRdqufy/fkdRg30aEa49lelyqzKYOoFE1vwa"
+        },
+        "alreadyDrawn": true,
+        "alreadyTaken": true
+      },
+      {
+        "user": {
+          "id": 0.08504312254712576,
+          "username": "tete",
+          "password": "$2b$10$kF5gdTQmzqOXH6WVM56il.9TNnqIgBSfMki5CjfALxClEBN8Fn/fO"
+        },
+        "alreadyDrawn": true,
+        "alreadyTaken": true
+      },
+      {
+        "user": {
+          "id": 0.2753828398460818,
+          "username": "moki",
+          "password": "$2b$10$H7g93ulOH4Wm72B6Bku7eO2dJovqp7925f3aMjuB8yDCOFgpz5OtW"
+        },
+        "alreadyDrawn": true,
+        "alreadyTaken": true
+      }
+    ],
+    "alreadyDrawnUsers": [
+      {
+        "user": {
+          "id": 0.2753828398460818,
+          "username": "moki",
+          "password": "$2b$10$H7g93ulOH4Wm72B6Bku7eO2dJovqp7925f3aMjuB8yDCOFgpz5OtW"
+        },
+        "santa": {
+          "id": 0.41824212838346475,
+          "username": "petra",
+          "password": "$2b$10$9H7TXxCPcwh4F5gW1oDORORyG/flD5tHDvm0w15ejIVx6fbCqv56q"
+        }
+      },
+      {
+        "user": {
+          "id": 0.3306128250038307,
+          "username": "mihaly",
+          "password": "$2b$10$BohGiw89Png4kupVXAWQMOv47l9FAvod7Lr7tUxzCf/zfuw.v/OG6"
+        },
+        "santa": {
+          "id": 0.2753828398460818,
+          "username": "moki",
+          "password": "$2b$10$H7g93ulOH4Wm72B6Bku7eO2dJovqp7925f3aMjuB8yDCOFgpz5OtW"
+        }
+      },
+      {
+        "user": {
+          "id": 0.41824212838346475,
+          "username": "petra",
+          "password": "$2b$10$9H7TXxCPcwh4F5gW1oDORORyG/flD5tHDvm0w15ejIVx6fbCqv56q"
+        },
+        "santa": {
+          "id": 0.3306128250038307,
+          "username": "mihaly",
+          "password": "$2b$10$BohGiw89Png4kupVXAWQMOv47l9FAvod7Lr7tUxzCf/zfuw.v/OG6"
+        }
+      },
+      {
+        "user": {
+          "id": 0.04791217664006697,
+          "username": "emi",
+          "password": "$2b$10$bxAm0nzM43ieLtDJbXRdqufy/fkdRg30aEa49lelyqzKYOoFE1vwa"
+        },
+        "santa": {
+          "id": 0.08504312254712576,
+          "username": "tete",
+          "password": "$2b$10$kF5gdTQmzqOXH6WVM56il.9TNnqIgBSfMki5CjfALxClEBN8Fn/fO"
+        }
+      },
+      {
+        "user": {
+          "id": 0.08504312254712576,
+          "username": "tete",
+          "password": "$2b$10$kF5gdTQmzqOXH6WVM56il.9TNnqIgBSfMki5CjfALxClEBN8Fn/fO"
+        },
+        "santa": {
+          "id": 0.04791217664006697,
+          "username": "emi",
+          "password": "$2b$10$bxAm0nzM43ieLtDJbXRdqufy/fkdRg30aEa49lelyqzKYOoFE1vwa"
+        }
+      }
+    ],
+    "isActive": true,
+    "isFinished": true,
+    "drawStarted": true
+  },
+  {
+    "id": 0.8836705285399784,
+    "groupname": "tete",
+    "budget": 1234,
+    "finishDate": "123444",
+    "admin": {
+      "id": 0.3306128250038307,
+      "username": "mihaly",
+      "password": "$2b$10$BohGiw89Png4kupVXAWQMOv47l9FAvod7Lr7tUxzCf/zfuw.v/OG6"
+    },
     "users": [
-        {"id": 1, "isAdmin": false, "name": "Karol", "email": "karol@email.com"},
-        {"id": 5, "isAdmin": false, "name": "Joe", "email": "joe@email.com"},
-        {"id": 6, "isAdmin": false, "name": "John", "email": "john@email.com"},
-        {"id": 2, "isAdmin": true, "name": "James", "email": "james@email.com"},
-        {"id": 3, "isAdmin": false, "name": "Jane", "email": "jane@email.com"}
-        
-    ]}
+      {
+        "user": {
+          "id": 0.3306128250038307,
+          "username": "mihaly",
+          "password": "$2b$10$BohGiw89Png4kupVXAWQMOv47l9FAvod7Lr7tUxzCf/zfuw.v/OG6"
+        },
+        "alreadyDrawn": false,
+        "alreadyTaken": false
+      }
+    ],
+    "alreadyDrawnUsers": [],
+    "isActive": false,
+    "isFinished": false,
+    "drawStarted": false
+  },
+  {
+    "id": 0.9358812551743974,
+    "groupname": "erre",
+    "budget": 1234,
+    "finishDate": "1234",
+    "admin": {
+      "id": 0.3306128250038307,
+      "username": "mihaly",
+      "password": "$2b$10$BohGiw89Png4kupVXAWQMOv47l9FAvod7Lr7tUxzCf/zfuw.v/OG6"
+    },
+    "users": [
+      {
+        "user": {
+          "id": 0.3306128250038307,
+          "username": "mihaly",
+          "password": "$2b$10$BohGiw89Png4kupVXAWQMOv47l9FAvod7Lr7tUxzCf/zfuw.v/OG6"
+        },
+        "alreadyDrawn": false,
+        "alreadyTaken": false
+      }
+    ],
+    "alreadyDrawnUsers": [],
+    "isActive": true,
+    "isFinished": false,
+    "drawStarted": false
+  },
+  {
+    "id": 0.7394403995759518,
+    "groupname": "rere",
+    "budget": 1234,
+    "finishDate": "1231243",
+    "admin": {
+      "id": 0.3306128250038307,
+      "username": "mihaly",
+      "password": "$2b$10$BohGiw89Png4kupVXAWQMOv47l9FAvod7Lr7tUxzCf/zfuw.v/OG6"
+    },
+    "users": [
+      {
+        "user": {
+          "id": 0.3306128250038307,
+          "username": "mihaly",
+          "password": "$2b$10$BohGiw89Png4kupVXAWQMOv47l9FAvod7Lr7tUxzCf/zfuw.v/OG6"
+        },
+        "alreadyDrawn": false,
+        "alreadyTaken": false
+      }
+    ],
+    "alreadyDrawnUsers": [],
+    "isActive": true,
+    "isFinished": false,
+    "drawStarted": false
+  },
+  {
+    "id": 0.23089157995896858,
+    "groupname": "fifi",
+    "budget": 1234,
+    "finishDate": "1234",
+    "admin": {
+      "id": 0.5371043976370171,
+      "username": "Mihaly",
+      "password": "$2b$10$gzOA6.AceAlB0Bxpm9j6E.Tm3ntWCUoylgfba0qbhk5.Ve/DL1yCC"
+    },
+    "users": [
+      {
+        "user": {
+          "id": 0.5371043976370171,
+          "username": "Mihaly",
+          "password": "$2b$10$gzOA6.AceAlB0Bxpm9j6E.Tm3ntWCUoylgfba0qbhk5.Ve/DL1yCC"
+        },
+        "alreadyDrawn": true,
+        "alreadyTaken": true
+      },
+      {
+        "user": {
+          "id": 0.41824212838346475,
+          "username": "petra",
+          "password": "$2b$10$9H7TXxCPcwh4F5gW1oDORORyG/flD5tHDvm0w15ejIVx6fbCqv56q"
+        },
+        "alreadyDrawn": true,
+        "alreadyTaken": true
+      }
+    ],
+    "alreadyDrawnUsers": [
+      {
+        "user": {
+          "id": 0.5371043976370171,
+          "username": "Mihaly",
+          "password": "$2b$10$gzOA6.AceAlB0Bxpm9j6E.Tm3ntWCUoylgfba0qbhk5.Ve/DL1yCC"
+        },
+        "santa": {
+          "id": 0.41824212838346475,
+          "username": "petra",
+          "password": "$2b$10$9H7TXxCPcwh4F5gW1oDORORyG/flD5tHDvm0w15ejIVx6fbCqv56q"
+        }
+      },
+      {
+        "user": {
+          "id": 0.41824212838346475,
+          "username": "petra",
+          "password": "$2b$10$9H7TXxCPcwh4F5gW1oDORORyG/flD5tHDvm0w15ejIVx6fbCqv56q"
+        },
+        "santa": {
+          "id": 0.5371043976370171,
+          "username": "Mihaly",
+          "password": "$2b$10$gzOA6.AceAlB0Bxpm9j6E.Tm3ntWCUoylgfba0qbhk5.Ve/DL1yCC"
+        }
+      }
+    ],
+    "isActive": true,
+    "isFinished": true,
+    "drawStarted": true
+  },
+  {
+    "id": 0.21947052016569546,
+    "groupname": "",
+    "budget": 0,
+    "finishDate": "",
+    "admin": {
+      "id": 0.41824212838346475,
+      "username": "petra",
+      "password": "$2b$10$9H7TXxCPcwh4F5gW1oDORORyG/flD5tHDvm0w15ejIVx6fbCqv56q"
+    },
+    "users": [
+      {
+        "user": {
+          "id": 0.41824212838346475,
+          "username": "petra",
+          "password": "$2b$10$9H7TXxCPcwh4F5gW1oDORORyG/flD5tHDvm0w15ejIVx6fbCqv56q"
+        },
+        "alreadyDrawn": false,
+        "alreadyTaken": false
+      }
+    ],
+    "alreadyDrawnUsers": [],
+    "isActive": false,
+    "isFinished": false,
+    "drawStarted": false
+  },
+  {
+    "id": 0.5013628809083523,
+    "groupname": "rara",
+    "budget": 1234,
+    "finishDate": "",
+    "admin": {
+      "id": 0.41824212838346475,
+      "username": "petra",
+      "password": "$2b$10$9H7TXxCPcwh4F5gW1oDORORyG/flD5tHDvm0w15ejIVx6fbCqv56q"
+    },
+    "users": [
+      {
+        "user": {
+          "id": 0.41824212838346475,
+          "username": "petra",
+          "password": "$2b$10$9H7TXxCPcwh4F5gW1oDORORyG/flD5tHDvm0w15ejIVx6fbCqv56q"
+        },
+        "alreadyDrawn": false,
+        "alreadyTaken": false
+      }
+    ],
+    "alreadyDrawnUsers": [],
+    "isActive": false,
+    "isFinished": false,
+    "drawStarted": false
+  }
 ]

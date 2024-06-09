@@ -10,6 +10,10 @@ export default {
         'input': '#AE060650', // HSL
         'custom-red': 'rgba(255, 0, 0, 0.5)', // RGBA
       },
+      minHeight: {
+        'screen-70': '70vh',
+        'screen-90': '90vh',
+      },
     },
     fontFamily: {
       sans: ["Roboto", "sans-serif"],

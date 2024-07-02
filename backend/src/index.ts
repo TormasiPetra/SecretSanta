@@ -506,7 +506,7 @@ app.delete("/api/delete/:groupname/:username", async (req, res) => {
 
   if (user.username !== currentGroup.admin.username) {
     return res.sendStatus(401);
-  }
+  } 
 
   const userTakeOut = currentGroup.users.filter(
     (user) => user.user.username !== username
@@ -618,7 +618,7 @@ app.delete("/api/deleteGroup/:groupname/:username", async (req, res) => {
 
   if (user.username !== currentGroup.admin.username) {
     return res.sendStatus(401);
-  }
+  } 
 
   const filteredGroups = groups.filter((group) => group.groupname !== groupname);
 
@@ -628,7 +628,7 @@ app.delete("/api/deleteGroup/:groupname/:username", async (req, res) => {
     GroupSchema.array()
   );
 
-  res.json({result: saveResult});
+  res.json(saveResult);
   //név törlése a listából
 });
 

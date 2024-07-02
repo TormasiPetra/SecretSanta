@@ -497,7 +497,7 @@ app.delete("/api/deleteGroup/:groupname/:username", (req, res) => __awaiter(void
     }
     const filteredGroups = groups.filter((group) => group.groupname !== groupname);
     const saveResult = yield (0, util_1.save)("groups", filteredGroups, GroupSchema.array());
-    res.json({ result: saveResult });
+    res.json(saveResult);
     //név törlése a listából
 }));
 // creating a group/signup

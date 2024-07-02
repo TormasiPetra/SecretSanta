@@ -112,5 +112,5 @@ export const deleteGroup = (
   safeFetch({
     method: "DELETE",
     url: `/api/deleteGroup/${groupname}/${username}`,
-    schema: z.object({result: z.boolean()}),
+    schema: z.object({ success: z.boolean() }),
   });

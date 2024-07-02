@@ -23,17 +23,17 @@
 
 const dispatch = createEventDispatcher();
 
+let today = startOfToday();
+let selectedDay = today;
+let currentMonth = format(today, "MMM-yyyy");
+
+let firstDayCurrentMonth = parse(currentMonth, "MMM-yyyy", new Date());
+
 function handleDayClick(day: Date) {
   selectedDay = day;
-  let formattedDaySelected = format(selectedDay, 'yyyy-MMMM-dd')
   dispatch('daySelected', { selectedDay });
 }
 
-  let today = startOfToday();
-  let selectedDay = today;
-  let currentMonth = format(today, "MMM-yyyy");
-
-  let firstDayCurrentMonth = parse(currentMonth, "MMM-yyyy", new Date());
 
   const nextMonth = () => {
     let firstDayNextMonth = add(firstDayCurrentMonth, { months: 1 });
@@ -75,7 +75,7 @@ function handleDayClick(day: Date) {
   ];
 </script>
 
-<main>
+<main class="">
   <div class="">
     <div class="max-w-md px-4 mx-auto">
       <div class="grid divide-x divide-gray-200">

@@ -28,7 +28,9 @@
   import type { z } from "zod";
   import { createEventDispatcher } from "svelte";
   import DatePicker from "./DatePicker.svelte";
-  import { format } from "date-fns";
+  import { format, parse } from "date-fns";
+  import { readable } from "svelte/store";
+  import Countdown from "./Countdown.svelte";
 
   const dispatch = createEventDispatcher();
 
@@ -51,7 +53,8 @@
   let signupSuccess: boolean | null = null;
   let loggedInUserName: string | null = null;
 
-  let currentGroup: string | null = null;
+  let currentGroup: Group | null = null;
+  let currentGroupName: string | null = null;
 
   let isDisabled: boolean = true;
   let isEditOpen: boolean = false;
@@ -109,7 +112,7 @@
     username = "";
     password = "";
     budget = null;
-    finishDate = "";
+    finishDate = null;
   };
 
   function goToPage(page: string) {
@@ -194,7 +197,8 @@
     if (!response.success) return;
 
     chosenUser = response.data.chosenUser;
-    currentGroup = response.data.currentGroup.groupname;
+    currentGroupName = response.data.currentGroup.groupname;
+    currentGroup = response.data.currentGroup;
     handleInitialize();
     currentPage = "chosen";
     console.log(chosenUser);
@@ -208,16 +212,16 @@
         group.alreadyDrawnUsers.forEach((user) => {
           if (user.user.username === username) {
             chosenUser = user.santa;
-          }
+            }
+          finishDate = group.finishDate
         });
       }
     });
+    
     currentPage = "chosen";
-    console.log(chosenUser);
   };
 
   let selectedDay: Date = new Date();
-  let formattedDay: string = format(selectedDay, "yyyy.MMMM.dd");
 
   interface DaySelectedEventDetail {
     selectedDay: Date;
@@ -229,11 +233,6 @@
     selectedDay = event.detail.selectedDay;
   }
 
-  function getFormattedDate(date: Date | null, dateFormat: string): string {
-    return date ? format(date, dateFormat) : "";
-  }
-  let today = new Date();
-
   const deleteGroupForever = async (
     groupname: string | null,
     username: string | null
@@ -242,7 +241,7 @@
     const response = await deleteGroup(groupname, username);
     if (!response.success) return;
 
-    deleteSuccess = response.data.result;
+    deleteSuccess = response.data.success;
     handleInitialize();
   };
 </script>
@@ -332,7 +331,8 @@
                     <button
                       class="flex justify-center items-center"
                       on:click={() => {
-                        currentGroup = group.groupname;
+                        currentGroupName = group.groupname;
+                        currentGroup = group;
                         currentPage = "selectedGroup";
                       }}
                     >
@@ -344,8 +344,7 @@
                     </button>
                     <button
                       on:click={() => {
-                        currentGroup = group.groupname;
-                        console.log(currentGroup);
+                        currentGroupName = group.groupname;
                         deleteGroupForever(group.groupname, loggedInUserName);
                       }}
                       class="flex justify-center items-center absolute bottom-2 right-2 z-10 w-10 h-10"
@@ -376,7 +375,7 @@
                       <div class="w-full">
                         <div class="flex flex-row w-full gap-4 mt-2">
                           <img class="object-contain" src={datePNG} alt="" />
-                          <h3>{group.finishDate}</h3>
+                          <h3>{format(group.finishDate, "yyyy-MM-dd")}</h3>
                         </div>
                         <div class="flex flex-row w-full gap-4 mt-2">
                           <img class="  object-contain" src={members} alt="" />
@@ -574,27 +573,29 @@
           placeholder="Enter budget"
         />
 
-        <div class="relative max-w-xs w-full">
+        <div class="relative max-w-xs w-full z-10">
           <input
             on:click={() => {
               showDatePicker = !showDatePicker;
-              console.log(selectedDay);
+              finishDate = selectedDay.toISOString();
             }}
-            bind:value={selectedDay}
-            class="text-center mt-2 placeholder-input text-input text-m input input-bordered border-primary w-full"
+            class="text-center mt-2 placeholder-input text-input text-m input input-bordered border-primary w-full z-50"
             type="text"
             placeholder={format(selectedDay, "yyyy-MMMM-dd")}
           />
           {#if showDatePicker}
             <div
-              class="absolute top-14 bg-secondary bg-opacity-95 rounded-b-3xl"
+              class="absolute top-12 bg-secondary bg-opacity-95 rounded-b-3xl w-full -z-50"
             >
               <DatePicker on:daySelected={handleDaySelected} />
             </div>
           {/if}
         </div>
         <button
-          on:click={() => handleGroupCreate()}
+          on:click={() => {
+            handleGroupCreate();
+            console.log(finishDate);
+          }}
           class="w-full max-w-xs btn border-[none] font-medium h-[60px] mt-6 px-12 text-m text-secondary bg-primary border-none"
           >Create</button
         >
@@ -641,7 +642,7 @@
         </button>
         {#if groupsOfUser}
           {#each groupsOfUser as group}
-            {#if group.groupname === currentGroup && group.admin !== null}
+            {#if group.groupname === currentGroupName && group.admin !== null}
               <div class="text-white mt-10">
                 <h1 class="">{firstLetterUpperCase(group.groupname)} group</h1>
               </div>
@@ -654,7 +655,7 @@
                   <div class="w-1/2">
                     <div class="flex flex-row w-full gap-4 mt-2">
                       <img class="object-contain" src={dateSVG} alt="" />
-                      <h3>{group.finishDate}</h3>
+                      <h3>{format(group.finishDate, "yyyy-MM-dd")}</h3>
                     </div>
 
                     <div class="flex flex-row w-full gap-4 mt-2">
@@ -789,7 +790,9 @@
               {/if}
               {#if user.user.username === loggedInUserName && user.alreadyDrawn}
                 <button
-                  on:click={() => seeWhoIGot(loggedInUserName, group.groupname)}
+                  on:click={() => {
+                    seeWhoIGot(loggedInUserName, group.groupname);
+                  }}
                   class="absolute bottom-4 w-full max-w-xs btn border-[none] font-medium h-[60px] px-12 text-m text-secondary bg-primary border-none"
                   >Let's see who I got
                 </button>
@@ -841,7 +844,8 @@
         <div class="card bg-secondary border border-primary w-[326px] p-12">
           <h1 class="text-lg">Hey {firstLetterUpperCase(loggedInUserName)},</h1>
           <h2 class="text-sm mt-2 text-gray-400">
-            Your secret santa from {firstLetterUpperCase(currentGroup)} group is...
+            Your secret santa from {firstLetterUpperCase(currentGroupName)} group
+            is...
           </h2>
 
           {#if chosenUser}
@@ -854,26 +858,15 @@
             </div>
           {/if}
         </div>
-        <div
-          class="card mt-4 bg-primary text-secondary w-[326px] py-4 px-8 flex flex-row justify-between items-center"
-        >
-          <div>
-            <h1 class="text-lg">21</h1>
-            <h2 class="text-sm opacity-70">days</h2>
+        {#if currentGroup}
+          <div
+            class="card mt-4 bg-primary text-secondary w-[326px] py-4 px-8 flex flex-row justify-between items-center"
+          >
+            
+              <Countdown {finishDate} />
+            
           </div>
-          <div>
-            <h1 class="text-lg">21</h1>
-            <h2 class="text-sm opacity-70">hours</h2>
-          </div>
-          <div>
-            <h1 class="text-lg">21</h1>
-            <h2 class="text-sm opacity-70">mins</h2>
-          </div>
-          <div>
-            <h1 class="text-lg">21</h1>
-            <h2 class="text-sm opacity-70">sec</h2>
-          </div>
-        </div>
+        {/if}
       </section>
     {/if}
   {/if}

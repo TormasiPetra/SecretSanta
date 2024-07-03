@@ -23,19 +23,18 @@
     return [diffDays, diffHours, diffMinutes, diffSec]; 
 } 
  -->
-<script>
+<script lang="ts">
   import { onMount } from "svelte";
   import { readable } from "svelte/store";
-  export let finishDate; // Accept targetDate as a prop
+  export let finishDate; 
 
-  // Function to calculate the time left until the target date
-  const calculateTimeLeft = (target) => {
+  const calculateTimeLeft = (finishDate:string) => {
     const now = new Date();
     const targetDate = new Date(finishDate)
-    const difference = targetDate - now;
+    const difference =  targetDate.getTime() - now.getTime() ;
 
     return {
-      days: Math.floor(difference / (1000 * 60 * 60 * 24)),
+      days:  Math.floor(difference / (1000 * 60 * 60 * 24)),
       hours: Math.floor((difference / (1000 * 60 * 60)) % 24),
       minutes: Math.floor((difference / 1000 / 60) % 60),
       seconds: Math.floor((difference / 1000) % 60),

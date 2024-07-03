@@ -2,6 +2,9 @@
   import backgroundOne from "./../assets/bg-1.png";
 
   import backgroundTwo from "./../assets/bg-2.png";
+  import reload from "./../assets/reload.svg";
+  import santa from "./../assets/santa.svg";
+  import edit from "./../assets/edit.svg";
   import backgroundThree from "./../assets/bg-3.png";
   import back from "./../assets/back.png";
   import money from "./../assets/money.png";
@@ -59,6 +62,9 @@
   let isDisabled: boolean = true;
   let isEditOpen: boolean = false;
 
+  let editGroupShown: boolean = false;
+  let groupToEdit: string = ""
+
   let editedUsername: string | null = null;
   let chosenUser: User | null = null;
 
@@ -79,6 +85,14 @@
 
   onMount(handleInitialize);
 
+  /*   const updateState = () => {
+    setInterval(async () => {
+      if (loggedInUserName) {
+        await handleInitialize();
+      }
+    }, 1000);
+  }; */
+
   const handleGroupCreate = async () => {
     const response = await create(
       loggedInUserName,
@@ -87,8 +101,9 @@
       finishDate
     );
     createSuccess = response.success;
-    handleInitialize();
-    allToNull();
+
+    /*     updateState();
+     */ allToNull();
     if (createSuccess === true) {
       currentPage = "profile";
     }
@@ -124,7 +139,7 @@
     localStorage.removeItem("token");
     loginSuccess = null;
 
-    currentPage = "signup";
+    currentPage = "login";
   };
 
   const handleLogin = async () => {
@@ -185,8 +200,16 @@
     handleInitialize();
   };
 
+  const handleEdit = async (
+    groupname: string | null
+  ) => {
+    console.log("edited");
+    handleInitialize();
+  };
+
   const toggleEdit = () => {
-    isEditOpen = !isEditOpen;
+    /* isEditOpen = !isEditOpen; */
+    editGroupShown = !editGroupShown
   };
 
   const handleDrawName = async (
@@ -200,6 +223,10 @@
     currentGroupName = response.data.currentGroup.groupname;
     currentGroup = response.data.currentGroup;
     handleInitialize();
+    if (!groupsOfUser) return;
+    groupsOfUser.forEach((group) => {
+      finishDate = group.finishDate;
+    });
     currentPage = "chosen";
     console.log(chosenUser);
   };
@@ -212,12 +239,12 @@
         group.alreadyDrawnUsers.forEach((user) => {
           if (user.user.username === username) {
             chosenUser = user.santa;
-            }
-          finishDate = group.finishDate
+          }
+          finishDate = group.finishDate;
         });
       }
     });
-    
+
     currentPage = "chosen";
   };
 
@@ -313,11 +340,23 @@
         class="relative min-h-screen text-primary flex flex-col items-center bg-no-repeat bg-center bg-primary bg-opacity-35 justify-center"
         style="background-image: url({backgroundThree})"
       >
+        <button
+          on:click={() => logout()}
+          class="absolute top-4 right-6 btn font-medium text-m text-secondary bg-primary border-none"
+        >
+          Logout
+        </button>
+        <button
+          on:click={() => handleInitialize()}
+          class="absolute bottom-5 right-4 font-medium border-none w-6 path-secondary"
+        >
+          <img src={reload} alt="reload" />
+        </button>
         <h1 class="text-myPrimary font-medium text-[24px] my-2 mt-6">
           Hi {firstLetterUpperCase(loggedInUserName)}!
         </h1>
         <div
-          class="relative your-groups min-h-screen-70 mb-6 bg-white bg-opacity-40 w-[94%] border-primary border rounded-[12px] p-3 flex justify-center"
+          class="relative your-groups min-h-screen-70 mb-6 mx-2 bg-white bg-opacity-40 w-[96%] border-primary border rounded-[12px] p-3 flex justify-center"
         >
           <div class="min-h-[90%] w-full">
             <h2>Your groups</h2>
@@ -334,6 +373,7 @@
                         currentGroupName = group.groupname;
                         currentGroup = group;
                         currentPage = "selectedGroup";
+                        handleInitialize();
                       }}
                     >
                       <img
@@ -342,6 +382,18 @@
                         alt="back"
                       />
                     </button>
+                    {#if group.admin !== null}
+                    {#if loggedInUserName === group.admin.username}
+                    <button class="flex justify-center items-center absolute bottom-2 right-10 z-10 w-10 h-10" on:click={() =>{
+                      editGroupShown = true
+                      groupToEdit = group.groupname
+                    } }>
+                      <img src={edit} alt="edit" />
+                    </button>
+                    {/if}
+                    
+                    {/if}
+                    
                     <button
                       on:click={() => {
                         currentGroupName = group.groupname;
@@ -371,15 +423,15 @@
                     </button>
 
                     <div>{firstLetterUpperCase(group.groupname)} group</div>
-                    <div class="flex justify-center w-full text-[12px]">
-                      <div class="w-full">
-                        <div class="flex flex-row w-full gap-4 mt-2">
-                          <img class="object-contain" src={datePNG} alt="" />
-                          <h3>{format(group.finishDate, "yyyy-MM-dd")}</h3>
-                        </div>
+                    <div class="flex justify-center w-full text-[10px]">
+                      <div class="w-full flex flex-col gap-2">
                         <div class="flex flex-row w-full gap-4 mt-2">
                           <img class="  object-contain" src={members} alt="" />
                           <h3>{group.users.length}</h3>
+                        </div>
+                        <div class="flex flex-row w-full gap-4 mt-2">
+                          <img class="object-contain" src={datePNG} alt="" />
+                          <h3>{format(group.finishDate, "yyyy-MM-dd")}</h3>
                         </div>
                       </div>
                       <div class="flex flex-row w-full gap-4 mt-2">
@@ -393,10 +445,42 @@
                     </div>
                   </div>
                 </div>
+              
               {/each}
-            {/if}
+              {/if}
+            </div>
           </div>
-        </div>
+          {#if editGroupShown}
+                <section
+                class="absolute top-0 left-0 h-full w-full bg-white bg-opacity-85 flex flex-col justify-center items-center z-10"
+              >
+                <div
+                  class="alert bg-primary max-w-[320px] flex flex-col justify-center border-none text-white"
+                >
+                  <div class="w-full flex justify-between items-center">
+                    <h1>Edit {firstLetterUpperCase(groupToEdit)} group details</h1>
+
+                    <button on:click={() => toggleEdit()} class="btn btn-ghost"
+                      >x</button
+                    >
+                  </div>
+                  <input
+                    bind:value={editedUsername}
+                    class="text-center mt-2 placeholder-input text-input text-m input input-bordered border-primary w-full max-w-xs"
+                    type="text"
+                    placeholder="New group name"
+                  />
+                  <button
+                    on:click={() =>
+                      handleEdit(
+                        groupToEdit
+                      )}
+                    class="bottom-4 w-full max-w-xs btn border-[none] font-medium h-[60px] px-12 text-m text-primary bg-secondary border-none"
+                    >Change name!</button
+                  >
+                </div>
+              </section>
+                {/if}
         <div
           class="w-full flex justify-center items-center flex-col py-4 gap-2"
         >
@@ -668,13 +752,25 @@
                     </div>
                   </div>
 
-                  {#if loggedInUserName === group.admin.username && !group.isActive}
+                  {#if loggedInUserName === group.admin.username && !group.isActive && group.users.length > 3}
                     <div class="flex justify-end items-center">
                       <button
                         on:click={() => {
                           handleStartDraw(group.groupname);
                         }}
                         class="w-stretch btn border-[none] font-medium h-[60px] px-12 text-m text-secondary bg-primary border-none"
+                        >Allow draw
+                      </button>
+                    </div>
+                  {/if}
+                  {#if loggedInUserName === group.admin.username && !group.isActive && group.users.length < 4}
+                    <div class="flex justify-end items-center">
+                      <button
+                        on:click={() => {
+                          handleStartDraw(group.groupname);
+                        }}
+                        class="w-stretch btn border-[none] font-medium h-[60px] px-12 text-m text-secondary bg-primary border-none"
+                        disabled={isDisabled}
                         >Allow draw
                       </button>
                     </div>
@@ -841,6 +937,15 @@
         class="relative h-screen text-primary flex flex-col items-center justify-center bg-no-repeat bg-center bg-primary bg-opacity-35 text-center"
         style="background-image: url({backgroundTwo})"
       >
+        <button
+          on:click={() => {
+            goToPage("profile");
+            handleInitialize();
+          }}
+          class="absolute top-[22px] left-[22px]"
+        >
+          <img src={back} alt="back" />
+        </button>
         <div class="card bg-secondary border border-primary w-[326px] p-12">
           <h1 class="text-lg">Hey {firstLetterUpperCase(loggedInUserName)},</h1>
           <h2 class="text-sm mt-2 text-gray-400">
@@ -862,9 +967,7 @@
           <div
             class="card mt-4 bg-primary text-secondary w-[326px] py-4 px-8 flex flex-row justify-between items-center"
           >
-            
-              <Countdown {finishDate} />
-            
+            <Countdown {finishDate} />
           </div>
         {/if}
       </section>

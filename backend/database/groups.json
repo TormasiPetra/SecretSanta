@@ -1,9 +1,9 @@
 [
   {
-    "id": 0.687376351466211,
-    "groupname": "qwew",
-    "budget": 11111,
-    "finishDate": "2024-07-16T22:00:00.000Z",
+    "id": 0.23127227629386304,
+    "groupname": "mi",
+    "budget": 200,
+    "finishDate": "2024-07-31T22:00:00.000Z",
     "admin": {
       "id": 0.41824212838346475,
       "username": "petra",
@@ -16,16 +16,60 @@
           "username": "petra",
           "password": "$2b$10$9H7TXxCPcwh4F5gW1oDORORyG/flD5tHDvm0w15ejIVx6fbCqv56q"
         },
-        "alreadyDrawn": true,
+        "alreadyDrawn": false,
         "alreadyTaken": false
       },
       {
         "user": {
-          "id": 0.5371043976370171,
-          "username": "Mihaly",
-          "password": "$2b$10$gzOA6.AceAlB0Bxpm9j6E.Tm3ntWCUoylgfba0qbhk5.Ve/DL1yCC"
+          "id": 0.3306128250038307,
+          "username": "mihaly",
+          "password": "$2b$10$BohGiw89Png4kupVXAWQMOv47l9FAvod7Lr7tUxzCf/zfuw.v/OG6"
         },
         "alreadyDrawn": false,
+        "alreadyTaken": false
+      },
+      {
+        "user": {
+          "id": 0.6534152998941456,
+          "username": "alma",
+          "password": "$2b$10$/fhiSyctBv/4zL5utg8Iae9jmv9v6i.1F7TShcdMWyTLvh9U4aKNS"
+        },
+        "alreadyDrawn": false,
+        "alreadyTaken": false
+      }
+    ],
+    "alreadyDrawnUsers": [],
+    "isActive": true,
+    "isFinished": false,
+    "drawStarted": false
+  },
+  {
+    "id": 0.9630418953067987,
+    "groupname": "ti",
+    "budget": 200,
+    "finishDate": "2024-07-15T22:00:00.000Z",
+    "admin": {
+      "id": 0.3306128250038307,
+      "username": "mihaly",
+      "password": "$2b$10$BohGiw89Png4kupVXAWQMOv47l9FAvod7Lr7tUxzCf/zfuw.v/OG6"
+    },
+    "users": [
+      {
+        "user": {
+          "id": 0.3306128250038307,
+          "username": "mihaly",
+          "password": "$2b$10$BohGiw89Png4kupVXAWQMOv47l9FAvod7Lr7tUxzCf/zfuw.v/OG6"
+        },
+        "alreadyDrawn": true,
+        "alreadyTaken": true
+      },
+      {
+        "user": {
+          "id": 0.41824212838346475,
+          "username": "petra",
+          "password": "$2b$10$9H7TXxCPcwh4F5gW1oDORORyG/flD5tHDvm0w15ejIVx6fbCqv56q"
+        },
+        "alreadyDrawn": true,
         "alreadyTaken": false
       },
       {
@@ -41,14 +85,26 @@
     "alreadyDrawnUsers": [
       {
         "user": {
-          "id": 0.41824212838346475,
-          "username": "petra",
-          "password": "$2b$10$9H7TXxCPcwh4F5gW1oDORORyG/flD5tHDvm0w15ejIVx6fbCqv56q"
+          "id": 0.3306128250038307,
+          "username": "mihaly",
+          "password": "$2b$10$BohGiw89Png4kupVXAWQMOv47l9FAvod7Lr7tUxzCf/zfuw.v/OG6"
         },
         "santa": {
           "id": 0.6534152998941456,
           "username": "alma",
           "password": "$2b$10$/fhiSyctBv/4zL5utg8Iae9jmv9v6i.1F7TShcdMWyTLvh9U4aKNS"
+        }
+      },
+      {
+        "user": {
+          "id": 0.41824212838346475,
+          "username": "petra",
+          "password": "$2b$10$9H7TXxCPcwh4F5gW1oDORORyG/flD5tHDvm0w15ejIVx6fbCqv56q"
+        },
+        "santa": {
+          "id": 0.3306128250038307,
+          "username": "mihaly",
+          "password": "$2b$10$BohGiw89Png4kupVXAWQMOv47l9FAvod7Lr7tUxzCf/zfuw.v/OG6"
         }
       }
     ],
@@ -57,10 +113,10 @@
     "drawStarted": true
   },
   {
-    "id": 0.38483740607840033,
-    "groupname": "30120",
-    "budget": 320210,
-    "finishDate": "2024-11-14T23:00:00.000Z",
+    "id": 0.8646674129421499,
+    "groupname": "tete",
+    "budget": 2341,
+    "finishDate": "2024-09-18T22:00:00.000Z",
     "admin": {
       "id": 0.41824212838346475,
       "username": "petra",
